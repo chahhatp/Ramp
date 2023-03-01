@@ -16,17 +16,6 @@ export function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [transactions, setTransactions] = useState<any>([])
 
-  // const currentTransactions = useMemo(() => {
-  //   if (paginatedTransactions?.data) {
-  //     if (transactions) {
-  //       return [...transactions, ...paginatedTransactions?.data]
-  //     }
-  //     return paginatedTransactions?.data
-  //   } else {
-  //     setTransactions(null)
-  //     return transactionsByEmployee || null
-  //   }
-  // }, [paginatedTransactions, transactionsByEmployee])
   const currentTransactions = useMemo(() => {
     if (paginatedTransactions) {
       return transactionsByEmployee ? [...transactionsByEmployee, ...paginatedTransactions.data] : paginatedTransactions.data;
