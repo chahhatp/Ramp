@@ -1,5 +1,4 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react"
-import { isTemplateExpression } from "typescript"
 import { InputSelect } from "./components/InputSelect"
 import { Instructions } from "./components/Instructions"
 import { Transactions } from "./components/Transactions"
@@ -18,20 +17,22 @@ export function App() {
 
   const currentTransactions = useMemo(() => {
     if (paginatedTransactions) {
-      return transactionsByEmployee ? [...transactionsByEmployee, ...paginatedTransactions.data] : paginatedTransactions.data;
+      return transactionsByEmployee
+        ? [...transactionsByEmployee, ...paginatedTransactions.data]
+        : paginatedTransactions.data
     } else {
-      return transactionsByEmployee || [];
+      return transactionsByEmployee || []
     }
-  }, [paginatedTransactions, transactionsByEmployee]);
+  }, [paginatedTransactions, transactionsByEmployee])
 
   useEffect(() => {
-    setTransactions((previousTransaction:any)=>[...previousTransaction, ...currentTransactions])
-  },[paginatedTransactions])
+    setTransactions((previousTransaction: any) => [...previousTransaction, ...currentTransactions])
+  }, [paginatedTransactions])
 
-  useEffect(()=>{
+  useEffect(() => {
     setTransactions(null)
     setTransactions(currentTransactions)
-  },[transactionsByEmployee])
+  }, [transactionsByEmployee])
 
   const loadAllTransactions = useCallback(async () => {
     setIsLoading(true)
